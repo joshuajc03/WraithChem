@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Information Lookup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-form {
+            margin-bottom: 20px;
+        }
+        .input-form input {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        .input-form button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .input-form button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chemical Compound Information Lookup</h1>
+        <form class="input-form" method="POST">
+            <input type="text" name="compound_name" placeholder="Enter compound name..." required>
+            <button type="submit">Get Info</button>
+        </form>
+
+        {% if compound_info %}
+            {% if compound_info.error %}
+                <div class="result">
+                    <p>{{ compound_info.error }}</p>
+                </div>
+            {% else %}
+                <div class="result">
+                    <h3>Compound: {{ compound_info.name }}</h3>
+                    <p><strong>Molecular Formula:</strong> {{ compound_info.formula }}</p>
+                    <p><strong>Molecular Weight:</strong> {{ compound_info.weight }} g/mol</p>
+                    <p><strong>Exact Mass:</strong> {{ compound_info.exact_mass }} g/mol</p>
+                    <p><strong>Charge:</strong> {{ compound_info.charge }}</p>
+                    <p><strong>InChIKey:</strong> {{ compound_info.inchikey }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
