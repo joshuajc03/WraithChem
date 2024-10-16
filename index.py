@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__, template_folder="templates")
 CORS(app)
 
-# Function to fetch data from PubChem
+# Function to fetch data from PubChem database
 def fetch_compound_info(compound_name):
     base_url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
     url = f"{base_url}/compound/name/{compound_name}/property/MolecularFormula,MolecularWeight,InChIKey,ExactMass,Charge/JSON"
